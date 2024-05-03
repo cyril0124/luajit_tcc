@@ -1,8 +1,18 @@
 #!/bin/bash
 
-PRJ_DIR=$(dirname $(realpath $0))
+current_shell=$(ps -p $$ -ocomm=)
 
-export CONFIG_TCCDIR=$(dirname $(realpath $0))/tinycc/install
+if [[ "$current_shell" == *bash* ]]; then
+    script_path=$(realpath "${BASH_SOURCE[0]}")
+elif [[ "$current_shell" == *zsh* ]]; then
+    script_path=$0
+else
+    echo "Unknown shell"
+fi
+
+PRJ_DIR=$(dirname $(realpath $script_path))
+
+export CONFIG_TCCDIR=$(dirname $(realpath $script_path))/tinycc/install
 
 export LUA_PATH="\
 $LUA_PATH\
