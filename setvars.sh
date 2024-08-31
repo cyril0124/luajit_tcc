@@ -10,12 +10,12 @@ else
     echo "Unknown shell"
 fi
 
-PRJ_DIR=$(dirname $(realpath $script_path))
+luajit_tcc_dir=$(dirname $(realpath $script_path))
 
 export CONFIG_TCCDIR=$(dirname $(realpath $script_path))/tinycc/install
 
 export LUA_PATH="\
 $LUA_PATH\
-$PRJ_DIR/?/?.lua;\
-$PRJ_DIR/?.lua;\
+$luajit_tcc_dir/?/?.lua;\
+$luajit_tcc_dir/?.lua;\
 "
