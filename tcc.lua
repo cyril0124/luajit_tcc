@@ -97,10 +97,10 @@ function tcc.load(lib, home_path)
 
   local clib
   if tcc.home_path then
-    local so = ("%s/lib/%s"):format(tcc.home_path, lib)
-    print("[tcc.lua] so file is " .. so)
+    local libfile = ("%s/lib/%s"):format(tcc.home_path, lib)
+    tcc.libfile = libfile
     
-    clib = pcall(ffi.load(so))
+    clib = pcall(ffi.load(libfile))
   end
   if not clib then
     clib = ffi.load(lib)
